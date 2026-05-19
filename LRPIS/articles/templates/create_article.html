@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ STATIC_URL }}/static/article.css">
+        <title>Новая статья</title>
+    </head>
+    <body>
+        <div class="small_logo">
+            <img src="{{ STATIC_URL }}/static/logo.png" />
+            <h2 class="link-to-main"><a href="/">Все статьи</a></h2>
+        </div>
+        <div class="article-text">
+        <h1>Написать статью</h1>
+        <form method="POST">{% csrf_token %}
+            <div>Название статьи: <input type="text" name="title" placeholder="Название статьи" value="{{ form.title }}"></div>
+            <div>Автор: {{ user.username }}</div>
+            <div>Текст статьи:</div>
+            <div><textarea name="text" rows=20 cols=100 placeholder="Текст статьи">{{ form.text }}</textarea></div>
+            <input type="submit" value="Сохранить">
+        </form>
+            {% if form.errrors_count > 0 %}
+            <p>Невозможно сохранить статью потому что:</p>
+            <ul>
+            {% for error in form.errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    </body>
+</html>

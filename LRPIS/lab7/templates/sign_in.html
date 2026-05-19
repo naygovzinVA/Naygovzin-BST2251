@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ STATIC_URL }}/static/article.css">
+        <title>Новая статья</title>
+    </head>
+    <body>
+        <div class="small_logo">
+            <img src="{{ STATIC_URL }}/static/logo.png" />
+            <h2 class="link-to-main"><a href="/">Все статьи</a></h2>
+        </div>
+        <div class="article-text">
+            <h1>Войти в аккаунт</h1>
+            <p>Если у вас нет аккаунта, вы можете <a href="/register/">создать новый</a></p>
+            <form method="POST">{% csrf_token %}
+                <div>Логин: <input type="text" name="username" placeholder="Логин" value="{{ form.username }}"></div>
+                <div>Пароль: <input type="password" name="password" placeholder="Пароль" value="{{ form.password }}"></div>
+                <input type="submit" value="Войти">
+            </form>
+            {% if form.errror %}
+            <p>Неправильный логин или пароль</p>
+            {% endif %}
+        </div>
+    </body>
+</html>

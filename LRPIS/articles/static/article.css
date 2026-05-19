@@ -1,0 +1,55 @@
+body {
+    background: #1abc9c;
+    font-family: Tahoma, Arial, sans-serif;
+    color: #ffffff;
+}
+
+.big_logo img {
+    display: block;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.small_logo {
+    padding: 13px;
+}
+
+.small_logo img {
+    width: 25%;
+    float: left;
+}
+
+
+.archive {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.post-title {
+    margin-bottom: 10px;
+}
+
+a {
+    color: #ffffff;
+}
+
+.article-author {
+    width: 50%;
+    float: left;
+}
+
+.article-created-date {
+    text-align: right;
+}
+
+.link-to-main {
+    text-align: right;
+}
+
+.article-text {
+    margin: 30px 10px;
+}
+
+.collapsed {
+    display: none !important;
+}

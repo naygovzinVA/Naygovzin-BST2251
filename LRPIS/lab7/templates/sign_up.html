@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ STATIC_URL }}/static/article.css">
+        <title>Новая статья</title>
+    </head>
+    <body>
+        <div class="small_logo">
+            <img src="{{ STATIC_URL }}/static/logo.png" />
+            <h2 class="link-to-main"><a href="/">Все статьи</a></h2>
+        </div>
+        <div class="article-text">
+            <h1>Создать аккаунт</h1>
+            <p>Если у вас уже есть аккаунт, вы можете <a href="/auth/">войти в него</a></p>
+            <form method="POST">{% csrf_token %}
+                <div>email: <input type="email" name="email" placeholder="email" value="{{ form.email }}"></div>
+                <div>Логин: <input type="text" name="username" placeholder="Логин" value="{{ form.username }}"></div>
+                <div>Пароль: <input type="password" name="password" placeholder="Пароль" value="{{ form.password }}"></div>
+                <input type="submit" value="Создать аккаунт">
+            </form>
+            {% if form.errors_count > 0 %}
+            <p>Невозможно создать пользователя потому что:</p>
+            <ul>
+            {% for error in form.errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    </body>
+</html>

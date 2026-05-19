@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ STATIC_URL }}/static/article.css">
+        <script src="{{ STATIC_URL }}/static/js/archive.js"></script>
+        <title>Архив статей</title>
+    </head>
+    <body>
+        {% if user.is_authenticated %}
+        <div class="article-created-date"><a href="/logout/">Вы зашли как {{ user.username }}</a></div>
+        {% else %}
+        <div class="article-created-date"><a href="/auth/">Вы не авторизованы. Войти или зарегестрироваться</a></div>
+        {% endif %}
+
+        <div class="big_logo">
+            <img src="{{ STATIC_URL }}/static/logo.png" />
+        </div>
+
+        <div class="archive">
+            {% for post in posts %}
+            <div class="one-post">
+                <h2 class="post-title"><a href="/article/{{post.id}}">{{ post.title }}</a></h2>
+
+                <button onclick="togglePost({{ post.id }})">Развернуть</button>
+
+                <div class="post-content collapsed" id="postContent-{{ post.id }}">
+                    <div class="article-info">
+                        <div class="article-author">{{ post.author.username }}</div>
+                        <div class="article-created-date">{{ post.created_date }}</div>
+                    </div>
+                    {% autoescape off %}
+                    <p class="article-text">{{ post.get_excerpt }}</p>
+                    {% endautoescape %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </body>
+</html>
